@@ -2,10 +2,10 @@ import React from 'react';
 import './style.css';
 import QRCode from 'qrcode.react';
 
-const UPIQRCodeGenerator = ({ upiId, payeeName, amount }) => {
-  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(
-    payeeName
-  )}&am=${amount}`;
+const UPIQRCodeGenerator = ({ upiId, payeeName, amount, currency }) => {
+  const upiLink = encodeURI(
+    `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amount}&cu=${currency}`
+  );
 
   return (
     <div>
@@ -24,6 +24,7 @@ export default function App() {
   const upiId = 'ajmal700@paytm';
   const payeeName = 'Ajmal Ali';
   const amount = '10000.00';
+  const currency = 'INR';
   return (
     <div>
       <div>
@@ -32,6 +33,7 @@ export default function App() {
           upiId={upiId}
           payeeName={payeeName}
           amount={amount}
+          currency={currency}
         />
       </div>
     </div>
